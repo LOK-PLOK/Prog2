@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <conio.h>
 #define SIZE 50
 #define MAX 8
 #define flush fflush(stdin)
