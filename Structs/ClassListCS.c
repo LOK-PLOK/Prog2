@@ -32,20 +32,16 @@ typedef struct{
     int max; // maximum number of student in the list
 }ClassList;
 
-/*Create a function that
-adds a new student in 
-the classlist collection.
-adds the student based
-on the lastname in ascending 
-order.*/
-void getstudent(StudInfo*);
-void displayList(ClassList);
-void findElem(ClassList);
-void deleteStudet(ClassList*);
-void sortList(ClassList*);
-void addStudent(ClassList*);
-void addStudent_First(ClassList*);
-void addStudent_inSort(ClassList*);
+void getstudent(StudInfo*);           //Get student information
+void displayList(ClassList);          //Display student information
+void findElem(ClassList);             //Find student by lastname and Display
+void deleteStudet(ClassList*);        //delete student in List
+void sortList(ClassList*);            //Sort the list(selection sort)
+void addStudent(ClassList*);          //addstudent at last index
+void addStudent_First(ClassList*);    //addstudent at first index
+void addStudent_inSort(ClassList*);   //addstudent at correct index in sorted list
+ClassList same_birthyear(ClassList);  //inialization function for student with same year
+   
 
 
 int main(){
@@ -54,17 +50,19 @@ int main(){
     CS.ctr = 0;
     CS.class = (StudInfo*)malloc(sizeof(StudInfo)*CS.max);
     int option = 0;
+    ClassList Same_year;
 
     while(1){
         printf("===Class List of Computer Science===\n");
         printf("1. Display List.\n");
-        printf("2. Find Student by ID.\n");
-        printf("3. Delete Student by name.\n");
-        printf("4. Sort List.\n");
-        printf("5. Add student.\n");
-        printf("6. Add student at first index.\n");
-        printf("7. Add student in sorted List.\n");
-        printf("8. Exit\n");
+        printf("2. Display List with same year.\n");
+        printf("3. Find Student by ID.\n");
+        printf("4. Delete Student by name.\n");
+        printf("5. Sort List.\n");
+        printf("6. Add student.\n");
+        printf("7. Add student at first index.\n");
+        printf("8. Add student in sorted List.\n");
+        printf("0. Exit\n");
         printf("Enter option number: ");
         scanf("%d",&option);
 
@@ -74,31 +72,37 @@ int main(){
             break;
 
             case 2:
-            findElem(CS);
+            Same_year = same_birthyear(CS);
+            displayList(Same_year);
             break;
 
             case 3:
-            deleteStudet(&CS);
+            findElem(CS);
             break;
 
             case 4:
-            sortList(&CS);
+            deleteStudet(&CS);
             break;
 
             case 5:
-            addStudent(&CS);
+            sortList(&CS);
             break;
 
             case 6:
-            addStudent_First(&CS);
+            addStudent(&CS);
             break;
 
             case 7:
-            addStudent_inSort(&CS);
+            addStudent_First(&CS);
             break;
 
             case 8:
+            addStudent_inSort(&CS);
+            break;
+
+            case 0:
             free(CS.class);
+            free(Same_year.class);
             exit(0);
             break;
         }
@@ -234,6 +238,13 @@ void addStudent_First(ClassList* first){
    }
 }
 
+/*Create a function that
+adds a new student in 
+the classlist collection.
+adds the student based
+on the lastname in ascending 
+order.*/
+
 void addStudent_inSort(ClassList* first){
     addStudent(first);
     int i,j;
@@ -251,10 +262,37 @@ void addStudent_inSort(ClassList* first){
     printf("\n\n");
 }
 
-
 /*Create a function that would 
 return all students name
 that is born on a specified
 birth year. use the concept
 of adding a sentinel value 
 using empty string as values.*/
+
+ClassList same_birthyear(ClassList first){
+    int year;
+    printf("Enter Year: ");
+    flush;
+    scanf("%d",&year);
+
+    ClassList second;
+    second.ctr = 0;
+    second.max = 10;
+    
+    int i,y = 0,count = 0;
+    for(i=0;i<first.ctr;i++){
+        if(first.class[i].birth_date.year == year){
+            count++;
+        }
+    }
+    second.ctr = count;
+    second.class = (StudInfo*)malloc(sizeof(StudInfo)*count);
+    for(i=0;i<first.ctr;i++){
+        if(first.class[i].birth_date.year == year){
+            second.class[y] = first.class[i];
+            y++;
+        }
+    }
+
+    return second;
+}
