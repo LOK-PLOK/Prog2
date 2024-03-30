@@ -223,15 +223,13 @@ void sortList(ClassList* first){
 }
 
 void addStudent_First(ClassList* first){
-   if(first->ctr < first->max){
-        first->ctr++;
-        int i,j;
-        for(i=0;i<first->ctr;i++){
-            for(j=first->ctr-1;j>=0;j--){
-                first->class[j+1] =first->class[j];
-            }
+    if(first->ctr < first->max){
+        int i;
+        for(i=first->ctr;i>0;i--){
+            first->class[i] =first->class[i-1];
         }
         getstudent(&first->class[0]);
+        first->ctr++;
         printf("\n\n");
    }else{
         printf("NO MORE AVAILABLE SPACE.\n\n");
