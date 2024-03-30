@@ -34,7 +34,7 @@ typedef struct{
 
 void getstudent(StudInfo*);           //Get student information
 void displayList(ClassList);          //Display student information
-void findElem(ClassList);             //Find student by lastname and Display
+void findElem(ClassList);             //Find student by ID and Display
 void deleteStudet(ClassList*);        //delete student in List
 void sortList(ClassList*);            //Sort the list(selection sort)
 void addStudent(ClassList*);          //addstudent at last index
@@ -219,11 +219,11 @@ void sortList(ClassList* first){
         first->class[i] = first->class[min];
         first->class[min] = temp;
     }
-    printf("\n\n");
+    displayList(*first);
 }
 
 void addStudent_First(ClassList* first){
-    if(first->ctr < first->max){
+   if(first->ctr < first->max){
         int i;
         for(i=first->ctr;i>0;i--){
             first->class[i] =first->class[i-1];
