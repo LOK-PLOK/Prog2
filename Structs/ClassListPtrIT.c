@@ -175,38 +175,35 @@ void findElem(ClassListPtr first){
     string id;
     printf("Enter Student ID: ");
     scanf("%s",id);
-    int i,flag = 1;
-    for(i=0;i<first->ctr&&flag==1;i++){
-        if(strcmpi(first->class[i].id,id) == 0){
-            printf("ID: %s\tBirthdate: %d/%d/%d\tAge: %d\t\tGender: ",first->class[i].id,first->class[i].birth_date.month,
-            first->class[i].birth_date.day,first->class[i].birth_date.year,first->class[i].age);
-            printf("%s\t",(first->class[i].gender)? "Male":"Female");
-            printf("Name: %s,%s.%c\n",first->class[i].stud_name.lname,first->class[i].stud_name.fname,first->class[i].stud_name.mname[0]);
-            printf("\n\n");
-            flag = 0;
-        }else{
-            printf("NOT IN CLASSLIST\n\n");
-        }
+    int i;
+    for(i=0;i<first->ctr&&strcmpi(first->class[i].id,id) != 0;i++){}
+    if(i<first->ctr){
+        printf("ID: %s\tBirthdate: %d/%d/%d\tAge: %d\t\tGender: ",first->class[i].id,first->class[i].birth_date.month,
+        first->class[i].birth_date.day,first->class[i].birth_date.year,first->class[i].age);
+        printf("%s\t",(first->class[i].gender)? "Male":"Female");
+        printf("Name: %s,%s.%c\n",first->class[i].stud_name.lname,first->class[i].stud_name.fname,first->class[i].stud_name.mname[0]);
+        printf("\n\n");
+    }else{
+        printf("NOT IN CLASSLIST\n\n");
     }
 }
 
 void deleteStudet(ClassListPtr first){
-    string lname;
+   string lname;
     printf("Enter student Last Name to delete student: ");
     flush;
     scanf("%s",lname);
     int i,j;
-    int flag = 1;
-    for(i=0;i<first->ctr&& flag ==1;i++){
-        if(strcmpi(first->class[i].stud_name.lname,lname) == 0){
-            for(j=i+1; j<first->ctr;j++){
+    for(i=0;i<first->ctr&& strcmpi(first->class[i].stud_name.lname,lname) != 0;i++){}
+    if(i<first->ctr){
+        for(j=i+1; j<first->ctr;j++){
                 first->class[j-1] = first->class[j];
-            }
-            flag = 0;
-            first->ctr--;
         }
+        first->ctr--;
+        printf("STUDENT SUCCESSFULLY DELETED\n\n");
+    }else{
+        printf("STUDENT NOT IN LIST\n\n");
     }
-    printf("STUDENT SUCCESSFULLY DELETED\n\n");
 }
 
 void sortList(ClassListPtr first){
