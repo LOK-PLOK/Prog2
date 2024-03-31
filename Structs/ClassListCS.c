@@ -41,7 +41,7 @@ void addStudent(ClassList*);          //addstudent at last index
 void addStudent_First(ClassList*);    //addstudent at first index
 void addStudent_inSort(ClassList*);   //addstudent at correct index in sorted list
 ClassList same_birthyear(ClassList);  //inialization function for student with same year
-   
+void displayList_sameyear(ClassList);
 
 
 int main(){
@@ -73,7 +73,7 @@ int main(){
 
             case 2:
             Same_year = same_birthyear(CS);
-            displayList(Same_year);
+            displayList_sameyear(Same_year);
             break;
 
             case 3:
@@ -284,13 +284,30 @@ ClassList same_birthyear(ClassList first){
         }
     }
     second.ctr = count;
-    second.class = (StudInfo*)malloc(sizeof(StudInfo)*count);
+    second.class = (StudInfo*)malloc(sizeof(StudInfo)*count+1);
     for(i=0;i<first.ctr;i++){
         if(first.class[i].birth_date.year == year){
             second.class[y] = first.class[i];
             y++;
         }
     }
+    strcpy(first.class[y].stud_name.lname," ");
 
     return second;
+}
+
+void displayList_sameyear(ClassList first){
+     int i;
+    printf("===STUDENTS===\n");
+    if(first.ctr !=0){
+        for(i=0;strcmp(first.class[i].stud_name.lname, " ") != 0;i++){
+            printf("ID: %s\tBirthdate: %d/%d/%d\tAge: %d\t\tGender: ",first.class[i].id,first.class[i].birth_date.month,
+            first.class[i].birth_date.day,first.class[i].birth_date.year,first.class[i].age);
+            printf("%s\t",(first.class[i].gender)? "Male":"Female");
+            printf("Name: %s,%s.%c\n",first.class[i].stud_name.lname,first.class[i].stud_name.fname,first.class[i].stud_name.mname[0]);
+        }
+        printf("\n\n");
+    }else{
+        printf("LIST IS EMPTY\n\n");
+    }
 }
