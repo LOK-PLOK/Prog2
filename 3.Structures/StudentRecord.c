@@ -202,8 +202,8 @@ void deleteStudet(studList* List){
     int x;
     for(i=0;i<List->count&&List->stud[i].id != ID;i++){}
     if(i<List->count){
-       for(x=i;x<List->count-1;x++){
-        List->stud[x] = List->stud[x+1];
+       for(x=i+1;x<List->count-1;x++){
+        List->stud[x-1] = List->stud[x];
        }
        List->count--;
        printf("STUDENT SUCCESSFULLY REMOVED\n\n");
