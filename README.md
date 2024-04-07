@@ -1,6 +1,8 @@
 # Programming 2 Codes
 
-A brief description of what this project does and who it's for
-
-
-![Logo](https://gifdb.com/images/high/confused-drew-scanlon-blinking-x6ae0pugzh26bd4q.gif)
+<p align="center">
+  <img src="https://qph.cf2.quoracdn.net/main-qimg-8309adb294c479d352575f4ad92e9ebc-lq" alt="Logo" style="display: block; margin: auto;">
+</p>
+<h2 align="center">
+  Repository for programming 2 codes
+</h2>
