@@ -53,8 +53,6 @@ int main(){
         printf("%d ",ptr->data);
     }
     printf("\n");
-    // int elem = 45;
-    // delete_elem(&head,elem);
     delete(&head);
     
     if(head == NULL){
