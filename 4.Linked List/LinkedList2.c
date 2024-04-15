@@ -194,8 +194,8 @@ void add_charPos(LIST* first){                      // Adds node(with data) at n
     scanf("%d",&pos);
 
     LIST *trav,temp;
-    for(trav = first,i=0; i<pos && (*trav)!= NULL; i++, trav= &(*trav)->link){}
-    if(i<pos){
+    for(trav = first,i=0; i == pos && (*trav)!= NULL; i++, trav= &(*trav)->link){}
+    if(i == pos){
         printf("POSITION EXCEEDS LIST\n\n");
     }else{
         temp = (LIST)malloc(sizeof(celltype));
@@ -264,12 +264,12 @@ void delete_charPos(LIST* first){                   // deletes a singe node at n
     scanf("%d",&pos);
 
     LIST *trav,temp;
-    for(trav = first,i=0; i<pos && (*trav)!= NULL; i++, trav= &(*trav)->link){}
-    if(i<pos){
+    for(trav = first,i=0; i == pos && (*trav)!= NULL; i++, trav= &(*trav)->link){}
+    if(i == pos){
         printf("POSITION EXCEEDS LIST\n\n");
     }else{
-        temp = *trav
-        *trav = (*trav)->link
+        temp = *trav;
+        *trav = (*trav)->link;
         free(temp);
         printf("SUCCESFULLY DELETED A NODE AT NTH POSTION\n\n");
     }
