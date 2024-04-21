@@ -195,14 +195,14 @@ void add_charPos(LIST* first){                      // Adds node(with data) at n
 
     LIST *trav,temp;
     for(trav = first,i=0; i != pos && (*trav)!= NULL; i++, trav= &(*trav)->link){}
-    if(i == pos){
-        printf("POSITION EXCEEDS LIST\n\n");
-    }else{
+    if(i == pos){  
         temp = (LIST)malloc(sizeof(celltype));
         temp->elem = elem;
         temp->link= *trav;
         *trav = temp;
-        printf("SUCCESSFULLY ADDED A NODE WITH VALUE AT NTH POSITION\n\n");
+        printf("SUCCESSFULLY ADDED A NODE WITH VALUE AT NTH POSITION\n\n");                   //corrected conditions in forloop and if statement
+    }else{
+        printf("POSITION OR NO.NODES EXCEEDS LIST\n\n");
     }
 }
 
@@ -265,13 +265,13 @@ void delete_charPos(LIST* first){                   // deletes a singe node at n
 
     LIST *trav,temp;
     for(trav = first,i=0; i != pos && (*trav)!= NULL; i++, trav= &(*trav)->link){}
-    if(i == pos){
-        printf("POSITION EXCEEDS LIST\n\n");
-    }else{
+    if(i == pos){ 
         temp = *trav;
         *trav = (*trav)->link;
         free(temp);
-        printf("SUCCESFULLY DELETED A NODE AT NTH POSTION\n\n");
+        printf("SUCCESFULLY DELETED A NODE AT NTH POSTION\n\n");                                 //corrected conditions in forloop and if statement
+    }else{
+        printf("POSITION EXCEEDS LIST\n\n");
     }
 }
 
