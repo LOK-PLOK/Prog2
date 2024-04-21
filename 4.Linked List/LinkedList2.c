@@ -194,7 +194,7 @@ void add_charPos(LIST* first){                      // Adds node(with data) at n
     scanf("%d",&pos);
 
     LIST *trav,temp;
-    for(trav = first,i=0; i == pos && (*trav)!= NULL; i++, trav= &(*trav)->link){}
+    for(trav = first,i=0; i != pos && (*trav)!= NULL; i++, trav= &(*trav)->link){}
     if(i == pos){
         printf("POSITION EXCEEDS LIST\n\n");
     }else{
@@ -264,7 +264,7 @@ void delete_charPos(LIST* first){                   // deletes a singe node at n
     scanf("%d",&pos);
 
     LIST *trav,temp;
-    for(trav = first,i=0; i == pos && (*trav)!= NULL; i++, trav= &(*trav)->link){}
+    for(trav = first,i=0; i != pos && (*trav)!= NULL; i++, trav= &(*trav)->link){}
     if(i == pos){
         printf("POSITION EXCEEDS LIST\n\n");
     }else{
